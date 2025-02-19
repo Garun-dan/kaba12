@@ -64,5 +64,55 @@
                 },
             ],
         });
+
+        document.querySelector('.btn-submit').addEventListener('click', function() {
+            let data = hot.getData();
+
+            let filteredData = data.filter(row => row.some(cell => cell !== null && cell !== ""));
+
+            if (filteredData.length === 0) {
+                Swal.fire({
+                    title: 'Peringatan!',
+                    text: 'Tidak ada data yang akan disimpan!',
+                    icon: 'warning'
+                });
+                return;
+            }
+
+            let slugMenu = @json($slugMenu);
+            let slugSubMenu = @json($slugSubMenu);
+
+            fetch(`/admin/${slugMenu}/${slugSubMenu}/tambah-menu`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute(
+                            'content')
+                    },
+                    body: JSON.stringify({
+                        data: filteredData
+                    })
+                })
+                .then(response => response.json())
+                .then(result => {
+                    Swal.fire({
+                        title: result.swal.title,
+                        text: result.swal.text,
+                        icon: result.swal.icon
+                    });
+
+                    if (result.success) {
+                        hot.clear();
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Terjadi kesalahan dalam menyimpan data!',
+                        icon: 'error'
+                    });
+                });
+        });
     </script>
 </x-backend.layout>

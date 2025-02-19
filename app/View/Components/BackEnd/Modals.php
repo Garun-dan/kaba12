@@ -8,12 +8,26 @@ use Illuminate\View\Component;
 
 class Modals extends Component
 {
+    public $slugMenu;
+    public $slugSubMenu;
     /**
      * Create a new component instance.
      */
     public function __construct()
     {
-        //
+        $this->setSlugFromUrl();
+    }
+
+    private function setSlugFromUrl(): void
+    {
+        $segments = request()->segments();
+
+        if (count($segments) < 2) {
+            abort(404, 'URL tidak valid.');
+        }
+
+        $this->slugMenu = $segments[1];
+        $this->slugSubMenu = $segments[2];
     }
 
     /**

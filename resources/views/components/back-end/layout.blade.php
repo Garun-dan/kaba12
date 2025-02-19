@@ -27,13 +27,16 @@
     <script src="{{ asset('plugin/tabel/datatables.min.js') }}"></script>
 
     {{-- SweetAlert --}}
-    <script src="{{ asset('plugin/sweetalert/alert.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('plugin/sweetalert/alert.css') }}">
+    <script src="{{ asset('plugin/sweetalert/alert.js') }}"></script>
 
     {{-- Handsontable --}}
     <script src="{{ asset('plugin/handsontabel/handsontable.full.min.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('plugin/handsontabel/handsontable.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugin/handsontabel/ht-theme-main.min.css') }}">
+
+    {{-- Chartjs --}}
+    <script src="{{ asset('plugin/chart/chart.js') }}"></script>
 
     {{-- Main CSS --}}
     <link rel="stylesheet" href="{{ asset('tema/style.css') }}">
@@ -41,6 +44,10 @@
 </head>
 
 <body>
+    <div id="success" data-success="{{ session('success') }}"></div>
+    <div id="error" data-error="{{ session('error') }}"></div>
+    <div id="warning" data-warning="{{ session('warning') }}"></div>
+
     <x-backend.modals></x-backend.modals>
     <div class="grid-body">
         <x-backend.left-sidebar></x-backend.left-sidebar>
@@ -53,6 +60,9 @@
         </div>
         <x-backend.right-sidebar></x-backend.right-sidebar>
     </div>
+
+    {{-- SweetAlert --}}
+    <script src="{{ asset('plugin/sweetalert/flash.js') }}"></script>
 
     {{-- Main JS --}}
     <script src="{{ asset('tema/backend/web-bakcend-script.js') }}"></script>

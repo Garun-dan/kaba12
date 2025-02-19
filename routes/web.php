@@ -10,4 +10,5 @@ Route::get('/', function () {
 // Backend
 Route::controller(BackController::class)->group(function () {
     Route::get('admin/{slugMenu}/{slugSubMenu}', 'index')->name('admin.viewHalaman');
+    Route::post('admin/{slugMenu}/{slugSubMenu}/tambah-menu', 'tambahMenu')->name('admin.tambahMenu');
 });
