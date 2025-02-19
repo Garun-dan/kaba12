@@ -15,16 +15,25 @@
     <title>kaba12 | {{ $title }}</title>
     <link rel="shortcut icon" href="{{ asset('default/logo/favication.svg') }}" type="image/x-icon">
 
+    {{-- Jquery --}}
+    <script src="{{ asset('plugin/jquery/jquery.js') }}"></script>
+
     {{-- Font Awesome --}}
     <link rel="stylesheet" href="{{ asset('plugin/icons/css/all.min.css') }}">
     <script src="{{ asset('plugin/icons/js/all.min.js') }}"></script>
 
-    {{-- Jquery --}}
-    <script src="{{ asset('plugin/jquery/jquery.js') }}"></script>
+    {{-- DataTable --}}
+    <link rel="stylesheet" href="{{ asset('plugin/tabel/datatables.min.css') }}">
+    <script src="{{ asset('plugin/tabel/datatables.min.js') }}"></script>
 
     {{-- SweetAlert --}}
     <script src="{{ asset('plugin/sweetalert/alert.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('plugin/sweetalert/alert.css') }}">
+
+    {{-- Handsontable --}}
+    <script src="{{ asset('plugin/handsontabel/handsontable.full.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('plugin/handsontabel/handsontable.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugin/handsontabel/ht-theme-main.min.css') }}">
 
     {{-- Main CSS --}}
     <link rel="stylesheet" href="{{ asset('tema/style.css') }}">
