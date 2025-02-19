@@ -31,7 +31,7 @@ $(document).ready(function () {
         paging: false,
         scrollY: 500,
         order: [
-            [0, "desc"]
+            [0, "asc"]
         ],
         columnDefs: [
             {

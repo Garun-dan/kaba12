@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\MenuModel;
+use App\Models\SubMenuModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -13,14 +14,23 @@ class BackController extends Controller
 {
     private function validasiMenu($slugMenu, $slugSubMenu)
     {
-        if ($slugMenu !== 'menu') {
+        $cekMenu = MenuModel::where('slug_menu', $slugMenu)->first();
+
+        if (!$cekMenu) {
             abort(404);
         }
 
-        $namaSubMenu = ucwords($slugSubMenu);
+        $cekSubMenu = SubMenuModel::where('slug_submenu', $slugSubMenu)
+            ->where('id_menu', $cekMenu->id_menu)
+            ->first();
 
-        return $namaSubMenu;
+        if (!$cekSubMenu) {
+            abort(404);
+        }
+
+        return $cekSubMenu->nama_submenu;
     }
+
 
     private function urlPath($slugMenu, $slugSubMenu)
     {
@@ -60,10 +70,16 @@ class BackController extends Controller
     {
         $title = $this->validasiMenu($slugMenu, $slugSubMenu);
 
+        $menu = MenuModel::where('slug_menu', $slugMenu)->first();
+
         $data = [
             'title' => $title,
             'slugMenu' => $slugMenu,
             'slugSubMenu' => $slugSubMenu,
+            'menu' => $menu->nama_menu,
+            'submenu' => $title,
+            'allMenu' => MenuModel::all(),
+            'allSubMenu' => SubMenuModel::with('joinMenu')->get(),
         ];
 
         $path = 'backend.' . $slugSubMenu;

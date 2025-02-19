@@ -2,6 +2,8 @@
 
 namespace App\View\Components\BackEnd;
 
+use App\Models\MenuModel;
+use App\Models\SubMenuModel;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
@@ -10,12 +12,16 @@ class Modals extends Component
 {
     public $slugMenu;
     public $slugSubMenu;
+    public $allMenu;
+    public $allSubMenu;
     /**
      * Create a new component instance.
      */
     public function __construct()
     {
         $this->setSlugFromUrl();
+        $this->allMenu = MenuModel::all();
+        $this->allSubMenu = SubMenuModel::with('joinMenu')->get();
     }
 
     private function setSlugFromUrl(): void

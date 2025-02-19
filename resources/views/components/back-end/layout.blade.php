@@ -50,7 +50,7 @@
 
     <x-backend.modals></x-backend.modals>
     <div class="grid-body">
-        <x-backend.left-sidebar></x-backend.left-sidebar>
+        <x-backend.left-sidebar :title="$title"></x-backend.left-sidebar>
         <div class="grid-main">
             <x-backend.topbar></x-backend.topbar>
             <main>
