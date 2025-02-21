@@ -62,6 +62,19 @@
     overflow-x: hidden;
 }
 
+.modal-content::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background: transparent;
+}
+
+.modal-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
 .modal-footer {
     width: 100%;
     display: flex;
@@ -72,7 +85,9 @@
 }
 
 .btn-close,
-.btn-simpan {
+.btn-simpan,
+.btn-reset {
+    width: 100%;
     font-size: 14px;
     padding: 5px 10px;
     border-radius: 10px;
@@ -87,6 +102,11 @@
 
 .btn-simpan {
     background-color: var(--primary);
+    color: var(--background);
+}
+
+.btn-reset {
+    background-color: var(--text);
     color: var(--background);
 }
 
@@ -151,6 +171,19 @@
     margin-top: 10px;
     overflow-y: auto;
     overflow-x: hidden;
+}
+
+.sidebar-menu::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+}
+
+.sidebar-menu::-webkit-scrollbar-thumb {
+    background: transparent;
+}
+
+.sidebar-menu::-webkit-scrollbar-track {
+    background: transparent;
 }
 
 .sidebar-menu .sidebar-item {
@@ -277,6 +310,21 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.topbar-main::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+}
+
+.topbar-main::-webkit-scrollbar-thumb {
+    background: transparent;
+}
+
+.topbar-main::-webkit-scrollbar-track {
+    background: transparent;
 }
 
 .topbar-main .crew-online,
@@ -305,11 +353,25 @@
 
 /* Main Konten */
 main {
-    margin: 60px 0px;
+    margin: 60px 0px 10px 0px;
     width: 100%;
+    max-width: calc(1280px - 550px);
     height: calc(100vh - 120px);
     overflow-y: auto;
     overflow-x: hidden;
+}
+
+main::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+}
+
+main::-webkit-scrollbar-thumb {
+    background: transparent;
+}
+
+main::-webkit-scrollbar-track {
+    background: transparent;
 }
 
 .according-halaman {
@@ -324,6 +386,7 @@ main {
 }
 
 .d-flex {
+    width: 100%;
     margin: 10px 0px;
     display: flex;
     justify-content: space-between;
@@ -374,6 +437,19 @@ main {
     height: auto;
     overflow-y: auto;
     overflow-x: hidden;
+}
+
+.box-item .body-box::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+}
+
+.box-item .body-box::-webkit-scrollbar-thumb {
+    background: transparent;
+}
+
+.box-item .body-box::-webkit-scrollbar-track {
+    background: transparent;
 }
 
 .table-responsive {
@@ -437,8 +513,8 @@ form .form-group {
 }
 
 .form-group label {
-    font-size: 14px;
-    font-weight: 600;
+    font-size: 12px;
+    font-weight: normal;
     color: var(--text);
     margin-bottom: 5px;
 }
@@ -462,6 +538,39 @@ form .form-group {
     border-color: var(--primary);
     outline: none;
     box-shadow: 0 0 5px rgba(28, 29, 30, 0.5);
+}
+
+.form-group #p_logo,
+.form-group #p_fav {
+    margin: 5px 0px;
+    width: auto;
+    height: 50px;
+}
+
+.form-group #p_bc,
+.form-group #p_login {
+    margin: 5px 0px;
+    width: auto;
+    height: 100px;
+}
+
+.text-danger {
+    color: var(--primary);
+    font-size: 10px;
+    font-weight: normal;
+}
+
+/* Footer */
+.grid-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: calc(1280px - 550px);
+    height: 20px;
+    font-size: 12px;
+    font-weight: normal;
+    color: var(--text);
 }
 
 /* Right Sidebar */

@@ -75,11 +75,18 @@ p {
     text-align: justify;
 }
 
+small {
+    font-size: 10px;
+    font-weight: normal;
+    text-align: justify;
+}
+
 h1,
 h2,
 h3,
 h4,
-p {
+p,
+small {
     color: var(--text);
     line-height: 1.5;
 }

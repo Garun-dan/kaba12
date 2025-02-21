@@ -4,6 +4,7 @@ namespace App\View\Components\BackEnd;
 
 use App\Models\MenuModel;
 use App\Models\SubMenuModel;
+use App\Models\TampilanModel;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
@@ -12,6 +13,7 @@ class Modals extends Component
 {
     public $slugMenu;
     public $slugSubMenu;
+    public $pengaturan;
     public $allMenu;
     public $allSubMenu;
     /**
@@ -20,6 +22,7 @@ class Modals extends Component
     public function __construct()
     {
         $this->setSlugFromUrl();
+        $this->pengaturan = TampilanModel::where('id_tampilan', 'mpt-001')->first();
         $this->allMenu = MenuModel::all();
         $this->allSubMenu = SubMenuModel::with('joinMenu')->get();
     }

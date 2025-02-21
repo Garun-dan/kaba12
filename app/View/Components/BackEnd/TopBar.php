@@ -2,18 +2,20 @@
 
 namespace App\View\Components\BackEnd;
 
+use App\Models\TampilanModel;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class TopBar extends Component
 {
+    public $pengaturan;
     /**
      * Create a new component instance.
      */
     public function __construct()
     {
-        //
+        $this->pengaturan = TampilanModel::where('id_tampilan', 'mpt-001')->first();
     }
 
     /**

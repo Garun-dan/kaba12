@@ -1,9 +1,9 @@
 @props(['title'])
 <div class="grid-left-sidebar">
     <div class="left-logo">
-        <img src="{{ asset('default/logo/favication.svg') }}" alt="favicon" id="favSidebar">
+        <img src="{{ asset($pengaturan->favicon_web) }}" alt="favicon" id="favSidebar">
         <div class="sidebar-nama">
-            PT. Media Kaba Duobaleh
+            {{ $pengaturan->nama_instansi }}
         </div>
     </div>
     <ul class="sidebar-menu">

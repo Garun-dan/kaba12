@@ -4,12 +4,14 @@ namespace App\View\Components\BackEnd;
 
 use App\Models\MenuModel;
 use App\Models\SubMenuModel;
+use App\Models\TampilanModel;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class LeftSidebar extends Component
 {
+    public $pengaturan;
     public $allMenu;
     public $allSubMenu;
     /**
@@ -17,6 +19,7 @@ class LeftSidebar extends Component
      */
     public function __construct()
     {
+        $this->pengaturan = TampilanModel::where('id_tampilan', 'mpt-001')->first();
         $this->allMenu = MenuModel::all();
         $this->allSubMenu = SubMenuModel::with('joinMenu')->get();
     }

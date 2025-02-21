@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BackController;
 use App\Http\Controllers\MasterDataController;
+use App\Http\Controllers\PengaturanController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -21,5 +22,11 @@ Route::prefix('admin/{slugMenu}/{slugSubMenu}')->group(function () {
         Route::put('/update-menu/{idMenu}', 'updateMenu')->name('admin.updateMenu');
         Route::post('/tambah-submenu', 'tambahSubMenu')->name('admin.tambahSubMenu');
         Route::put('/update-submenu/{idSubMenu}', 'updateSubMenu')->name('admin.updateSubMenu');
+    });
+
+    // Pengaturan
+    Route::controller(PengaturanController::class)->group(function () {
+        Route::post('/reset', 'resetTampilan')->name('admin.resetTampilan');
+        Route::put('/update/{jenis}', 'updateTampilan')->name('admin.updateTampilan');
     });
 });

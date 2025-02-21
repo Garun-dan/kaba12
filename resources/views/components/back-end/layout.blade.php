@@ -12,8 +12,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     {{-- Title dan Favicon --}}
-    <title>kaba12 | {{ $title }}</title>
-    <link rel="shortcut icon" href="{{ asset('default/logo/favication.svg') }}" type="image/x-icon">
+    <title>{{ $pengaturan->nama_web }} | {{ $title }}</title>
+    <link rel="shortcut icon" href="{{ asset($pengaturan->favicon_web) }}" type="image/x-icon">
 
     {{-- Jquery --}}
     <script src="{{ asset('plugin/jquery/jquery.js') }}"></script>

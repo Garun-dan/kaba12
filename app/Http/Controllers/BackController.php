@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\MenuModel;
 use App\Models\SubMenuModel;
+use App\Models\TampilanModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -78,6 +79,7 @@ class BackController extends Controller
             'slugSubMenu' => $slugSubMenu,
             'menu' => $menu->nama_menu,
             'submenu' => $title,
+            'pengaturan' => TampilanModel::where('id_tampilan', 'mpt-001')->first(),
             'allMenu' => MenuModel::all(),
             'allSubMenu' => SubMenuModel::with('joinMenu')->get(),
         ];

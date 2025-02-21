@@ -49,7 +49,6 @@
                             <tr>
                                 <td>No</td>
                                 <td>Submenu</td>
-                                <td>Menu</td>
                                 <td>Aksi</td>
                             </tr>
                         </thead>
@@ -58,9 +57,6 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td style="text-align: left;">{{ $sbm->nama_submenu }}</td>
-                                    <td style="text-align: left;"><span
-                                            class="icons-table {{ $sbm->joinMenu->icon_menu }}"></span>{{ $sbm->joinMenu->nama_menu }}
-                                    </td>
                                     <td>
                                         <button class="tbl-edit tbl-modals" id="btnModals"
                                             data-target="#editSubMenu-{{ $sbm->slug_submenu }}">Edit</button>

@@ -13,14 +13,23 @@ class MasterDataController extends Controller
 {
     private function validasiMenu($slugMenu, $slugSubMenu)
     {
-        if ($slugMenu !== 'menu') {
+        $cekMenu = MenuModel::where('slug_menu', $slugMenu)->first();
+
+        if (!$cekMenu) {
             abort(404);
         }
 
-        $namaSubMenu = ucwords($slugSubMenu);
+        $cekSubMenu = SubMenuModel::where('slug_submenu', $slugSubMenu)
+            ->where('id_menu', $cekMenu->id_menu)
+            ->first();
 
-        return $namaSubMenu;
+        if (!$cekSubMenu) {
+            abort(404);
+        }
+
+        return $cekSubMenu->nama_submenu;
     }
+
 
     private function urlPath($slugMenu, $slugSubMenu)
     {
