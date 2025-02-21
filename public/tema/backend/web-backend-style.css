@@ -86,10 +86,25 @@
 
 .btn-close,
 .btn-simpan,
-.btn-reset {
+.btn-reset,
+.btn-edit,
+.btn-akses {
     width: 100%;
     font-size: 14px;
     padding: 5px 10px;
+    border-radius: 10px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.badge-simpan,
+.badge-reset,
+.badge-edit,
+.badge-akses,
+.badge-danger,
+.badge-success {
+    font-size: 12px;
+    padding: 5px;
     border-radius: 10px;
     border: 0px;
     cursor: pointer;
@@ -108,6 +123,50 @@
 .btn-reset {
     background-color: var(--text);
     color: var(--background);
+}
+
+.btn-edit {
+    background-color: var(--warning);
+    color: var(--text);
+}
+
+.btn-akses {
+    background-color: var(--info);
+    color: var(--background);
+}
+
+.badge-simpan {
+    background-color: var(--primary);
+    color: var(--background);
+}
+
+.badge-reset {
+    background-color: var(--text);
+    color: var(--background);
+}
+
+.badge-edit {
+    background-color: var(--warning);
+    color: var(--text);
+}
+
+.badge-akses {
+    background-color: var(--info);
+    color: var(--background);
+}
+
+.badge-danger {
+    background-color: var(--danger);
+    color: var(--background);
+}
+
+.badge-success {
+    background-color: var(--success);
+    color: var(--background);
+}
+
+.icon-badge {
+    margin-left: 10px;
 }
 
 /* ======= Grid Body ======= */
@@ -395,7 +454,9 @@ main::-webkit-scrollbar-track {
 
 .box-item {
     width: 100%;
-    height: auto;
+    height: 100%;
+    max-height: 600px;
+    min-height: fit-content;
     padding: 20px;
     margin-right: 10px;
     border-radius: 16px;
@@ -434,7 +495,7 @@ main::-webkit-scrollbar-track {
 
 .box-item .body-box {
     width: 100%;
-    height: auto;
+    min-height: fit-content;
     overflow-y: auto;
     overflow-x: hidden;
 }

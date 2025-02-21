@@ -120,3 +120,56 @@
         </div>
     </div>
 @endforeach
+
+{{-- Hak Akses --}}
+@foreach ($allRole as $role)
+    <div id="akses-{{ $role->slug_role }}" class="modal">
+        <div class="modal-body">
+            <div class="modal-head">
+                <span class="judul-head-modal">Akses {{ $role->nama_role }}</span>
+                <span class="closeModal">&times;</span>
+            </div>
+            <div class="modal-content">
+                <div class="table-responsive">
+                    <table id="tabelAkses" class="display table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Menu</th>
+                                <th>Akses</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($allSubMenu as $submenu)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td style="text-align: left;">{{ $submenu->nama_submenu }}</td>
+                                    <td>
+                                        @php
+                                            $cekAkses = App\Models\AksesModel::where([
+                                                'id_role' => $role->id_role,
+                                                'id_menu' => $submenu->id_menu,
+                                                'id_submenu' => $submenu->id_submenu,
+                                            ])->first();
+                                        @endphp
+
+                                        <button class="beriAkses {{ $cekAkses ? 'badge-success' : 'badge-danger' }}"
+                                            data-idrole="{{ $role->id_role }}" data-idmenu="{{ $submenu->id_menu }}"
+                                            data-idsubmenu="{{ $submenu->id_submenu }}">
+                                            <span
+                                                class="fa-solid {{ $cekAkses ? 'fa-lock-open' : 'fa-lock' }}"></span>
+                                        </button>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer" style="display: none">
+                <button type="button" class="btn-close">Close</button>
+                <button type="submit" class="btn-simpan">Simpan</button>
+            </div>
+        </div>
+    </div>
+@endforeach

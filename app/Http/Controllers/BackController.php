@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\MenuModel;
 use App\Models\SubMenuModel;
+use App\Models\RoleModel;
 use App\Models\TampilanModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -82,6 +83,7 @@ class BackController extends Controller
             'pengaturan' => TampilanModel::where('id_tampilan', 'mpt-001')->first(),
             'allMenu' => MenuModel::all(),
             'allSubMenu' => SubMenuModel::with('joinMenu')->get(),
+            'allRole' => RoleModel::all(),
         ];
 
         $path = 'backend.' . $slugSubMenu;

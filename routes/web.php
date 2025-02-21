@@ -28,5 +28,8 @@ Route::prefix('admin/{slugMenu}/{slugSubMenu}')->group(function () {
     Route::controller(PengaturanController::class)->group(function () {
         Route::post('/reset', 'resetTampilan')->name('admin.resetTampilan');
         Route::put('/update/{jenis}', 'updateTampilan')->name('admin.updateTampilan');
+        Route::post('/tambah-role', 'tambahRole')->name('admin.tambahRole');
+        Route::put('/update-role/{idRole}', 'updateRole')->name('admin.updateRole');
+        Route::post('/beri-akses', 'beriAkses')->name('admin.beriAkses');
     });
 });

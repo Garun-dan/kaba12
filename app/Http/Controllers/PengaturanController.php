@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\MenuModel;
 use App\Models\SubMenuModel;
+use App\Models\RoleModel;
+use App\Models\AksesModel;
 use App\Models\TampilanModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -274,5 +276,101 @@ class PengaturanController extends Controller
         }
 
         return $this->kembali($redir, 'success', 'Data berhasil diperbaharui');
+    }
+
+    // Tambah Role
+    public function tambahRole($slugMenu, $slugSubMenu, Request $request)
+    {
+        $this->validasiMenu($slugMenu, $slugSubMenu);
+
+        $redir = $this->urlPath($slugMenu, $slugSubMenu);
+
+        $validasi = $request->validate([
+            'nama_role' => 'required|string|max:64'
+        ]);
+
+        $nama_role = $validasi['nama_role'];
+        $slug_role = Str::slug($nama_role);
+
+        $cekRole = RoleModel::orderBy('id_role', 'desc')->first();
+
+        if (empty($cekRole)) {
+            $id_role = 'mrc-001';
+        } else {
+            preg_match('/\d+/', $cekRole->id_role, $matches);
+            $lastId = isset($matches[0]) ? (int)$matches[0] : 0;
+            $newId = str_pad($lastId + 1, 3, '0', STR_PAD_LEFT);
+            $id_role = 'mrc-' . $newId;
+        }
+
+        RoleModel::create([
+            'id_role' => $id_role,
+            'nama_role' => $nama_role,
+            'slug_role' => $slug_role,
+        ]);
+
+        return $this->kembali($redir, 'success', $nama_role . ' Berhasil Disimpan!');
+    }
+
+    // Update Role
+    public function updateRole($slugMenu, $slugSubMenu, $idRole, Request $request)
+    {
+        $this->validasiMenu($slugMenu, $slugSubMenu);
+
+        $redir = $this->urlPath($slugMenu, $slugSubMenu);
+
+        $validasi = $request->validate([
+            'nama_role' => 'required|string|max:64'
+        ]);
+
+        $nama_role = $validasi['nama_role'];
+        $slug_role = Str::slug($nama_role);
+
+        $updateRole = RoleModel::where('id_role', $idRole)->first();
+        $cekRole = RoleModel::where('slug_role', $slug_role)->first();
+
+        if ($cekRole) {
+            return $this->kembali($redir, 'error', $nama_role . ' Sudah Tersedia!');
+        }
+
+        $updateRole->nama_role = $nama_role;
+        $updateRole->slug_role = $slug_role;
+        $updateRole->save();
+
+        return $this->kembali($redir, 'success', 'Data Role Sudah Diperbaharui!');
+    }
+
+    // Beri Akses
+    public function beriAkses($slugMenu, $slugSubMenu, Request $request)
+    {
+        $this->validasiMenu($slugMenu, $slugSubMenu);
+
+        $request->validate([
+            'idRole' => 'required|exists:role_models,id_role',
+            'idMenu' => 'required|exists:menu_models,id_menu',
+            'idSubMenu' => 'required|exists:sub_menu_models,id_submenu',
+        ]);
+
+        $akses = AksesModel::where([
+            'id_role' => $request->idRole,
+            'id_menu' => $request->idMenu,
+            'id_submenu' => $request->idSubMenu,
+        ])->first();
+
+        if ($akses) {
+            $akses->delete();
+            return response()->json(['status' => 'locked']);
+        } else {
+            $lastAkses = AksesModel::orderBy('id_akses', 'desc')->first();
+            $id_akses = $lastAkses ? 'key-' . str_pad((int)substr($lastAkses->id_akses, 4) + 1, 3, '0', STR_PAD_LEFT) : 'key-001';
+
+            AksesModel::create([
+                'id_akses' => $id_akses,
+                'id_role' => $request->idRole,
+                'id_menu' => $request->idMenu,
+                'id_submenu' => $request->idSubMenu,
+            ]);
+            return response()->json(['status' => 'unlocked']);
+        }
     }
 }

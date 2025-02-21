@@ -3,6 +3,7 @@
 namespace App\View\Components\BackEnd;
 
 use App\Models\MenuModel;
+use App\Models\RoleModel;
 use App\Models\SubMenuModel;
 use App\Models\TampilanModel;
 use Closure;
@@ -16,6 +17,7 @@ class Modals extends Component
     public $pengaturan;
     public $allMenu;
     public $allSubMenu;
+    public $allRole;
     /**
      * Create a new component instance.
      */
@@ -25,6 +27,7 @@ class Modals extends Component
         $this->pengaturan = TampilanModel::where('id_tampilan', 'mpt-001')->first();
         $this->allMenu = MenuModel::all();
         $this->allSubMenu = SubMenuModel::with('joinMenu')->get();
+        $this->allRole = RoleModel::all();
     }
 
     private function setSlugFromUrl(): void

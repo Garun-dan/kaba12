@@ -208,4 +208,24 @@
         </div>
     </div>
     <script src="{{ asset('tema/backend/js-halaman/previewMedia.js') }}"></script>
+    <script>
+        document.getElementById('formResetTampilan').addEventListener('submit', function(event) {
+            event.preventDefault();
+            Swal.fire({
+                title: 'Anda yakin ingin mereset?',
+                text: "Data yang sudah diubah akan hilang!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                confirmButtonText: 'Ya, reset!',
+                cancelButtonColor: "#d33",
+                cancelButtonText: 'Batal',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit();
+                }
+            });
+        });
+    </script>
 </x-back-end.layout>
